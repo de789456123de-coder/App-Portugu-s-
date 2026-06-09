@@ -192,6 +192,25 @@ export function HomeScreen({ navigation }: any) {
           <Ionicons name="refresh-outline" size={16} color={colors.textTertiary} />
         </TouchableOpacity>
 
+        {/* Botão Simulado */}
+        <Text style={styles.sectionLabel}>AVALIAÇÃO</Text>
+        <TouchableOpacity
+          style={[styles.simuladoBtn, shadows.md]}
+          onPress={() => navigation.navigate('Simulado')}
+          activeOpacity={0.85}
+        >
+          <View style={styles.simuladoBtnLeft}>
+            <View style={styles.simuladoIconBox}>
+              <Ionicons name="trophy" size={26} color="#fff" />
+            </View>
+            <View>
+              <Text style={styles.simuladoBtnTitle}>Simulado Final</Text>
+              <Text style={styles.simuladoBtnSub}>20 questões · Todos os tópicos</Text>
+            </View>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color="#fff" />
+        </TouchableOpacity>
+
         {/* Módulos agrupados */}
         {MODULE_GROUPS.map((group) => (
           <View key={group.label}>
@@ -286,6 +305,38 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.textSecondary,
     lineHeight: 19,
+  },
+  simuladoBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: colors.primary,
+    marginHorizontal: 16,
+    borderRadius: 16,
+    padding: 18,
+  },
+  simuladoBtnLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+  },
+  simuladoIconBox: {
+    width: 48,
+    height: 48,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  simuladoBtnTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  simuladoBtnSub: {
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.75)',
+    marginTop: 2,
   },
   footer: {
     flexDirection: 'row',

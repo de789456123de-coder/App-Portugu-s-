@@ -4,6 +4,7 @@ import { modulo3Lessons } from './modulo3';
 import { modulo4Lessons } from './modulo4';
 import { modulo5aLessons } from './modulo5a';
 import { modulo5bLessons } from './modulo5b';
+import { modulo6Lessons } from './modulo6';
 import { colors } from '../theme/colors';
 import { Module } from '../types';
 
@@ -92,5 +93,19 @@ export const MODULE_DATA = {
   modulo4: { module: modulo4, lessons: modulo4Lessons },
   modulo5a: { module: modulo5a, lessons: modulo5aLessons },
   modulo5b: { module: modulo5b, lessons: modulo5bLessons },
-  // modulo6 → Parte 5
+  modulo6: {
+    module: {
+      id: 'modulo6' as const,
+      title: 'Reescrita de Frases e Parágrafos',
+      subtitle: 'Tópico 6',
+      description: 'Significação (6.1), substituição (6.2), reorganização de orações e períodos (6.3) e reescrita por gênero e formalidade (6.4).',
+      icon: 'create-outline',
+      color: colors.modulo6,
+      colorLight: colors.modulo6Light,
+      totalLessons: modulo6Lessons.length,
+      totalExercises: 32,
+      group: 'reescrita',
+    },
+    lessons: modulo6Lessons,
+  },
 };

@@ -12,6 +12,7 @@ import { LessonContent } from '../components/LessonContent';
 import { colors, shadows } from '../theme/colors';
 import { MODULE_DATA } from '../data';
 import { Lesson } from '../types';
+import { ProgressService } from '../services/progress';
 
 interface LessonScreenProps {
   navigation: any;
@@ -30,8 +31,14 @@ export function LessonScreen({ navigation, route }: LessonScreenProps) {
   const isFirst = lessonIndex === 0;
   const isLast = lessonIndex === lessons.length - 1;
 
-  const goTo = (index: number) => {
+  const goTo = async (index: number) => {
+    await ProgressService.markLessonDone(moduleId, lesson.id);
     navigation.replace('LessonDetail', { moduleId, lessonIndex: index });
+  };
+
+  const handleFinish = async () => {
+    await ProgressService.markLessonDone(moduleId, lesson.id);
+    navigation.goBack();
   };
 
   return (
@@ -86,7 +93,7 @@ export function LessonScreen({ navigation, route }: LessonScreenProps) {
                 if (!isLast) {
                   goTo(lessonIndex + 1);
                 } else {
-                  navigation.goBack();
+                  handleFinish();
                 }
               }}
             >

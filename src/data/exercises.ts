@@ -483,6 +483,84 @@ export const exerciciosModulo5b: Exercise[] = [
   },
 ];
 
+export const exerciciosModulo6: Exercise[] = [
+  {
+    id: 'ex-m6-1',
+    type: 'multiple_choice',
+    difficulty: 'easy',
+    context: '"O atleta foi uma fera durante a competição."',
+    question: 'A palavra "fera" está empregada em sentido:',
+    options: [
+      'Denotativo — refere-se a um animal selvagem presente na competição',
+      'Conotativo — expressa que o atleta foi excepcional/feroz em seu desempenho',
+      'Técnico — terminologia esportiva para desempenho máximo',
+      'Literal — o atleta trouxe um animal selvagem',
+    ],
+    correctAnswer: 1,
+    explanation: 'Sentido CONOTATIVO (figurado): "fera" não é o animal, mas representa metaforicamente alguém com desempenho excepcional, feroz, imbatível. O contexto "durante a competição" confirma o uso figurado.',
+  },
+  {
+    id: 'ex-m6-2',
+    type: 'multiple_choice',
+    difficulty: 'medium',
+    context: '"O projeto foi aprovado pela maioria dos conselheiros, mas ainda enfrenta resistências."',
+    question: 'Substituindo "mas" por outro conector, qual alternativa mantém o sentido ADVERSATIVO?',
+    options: [
+      '"O projeto foi aprovado pela maioria dos conselheiros, portanto ainda enfrenta resistências."',
+      '"O projeto foi aprovado pela maioria dos conselheiros; todavia, ainda enfrenta resistências."',
+      '"O projeto foi aprovado pela maioria dos conselheiros, pois ainda enfrenta resistências."',
+      '"O projeto foi aprovado pela maioria dos conselheiros, logo ainda enfrenta resistências."',
+    ],
+    correctAnswer: 1,
+    explanation: '"Todavia" é adversativo (= mas, porém, contudo) — mantém a relação de contraste. "Portanto" e "logo" são conclusivos (mudam a relação lógica). "Pois" é explicativo. Somente "todavia" preserva a adversativa.',
+  },
+  {
+    id: 'ex-m6-3',
+    type: 'multiple_choice',
+    difficulty: 'hard',
+    context: '"A diretora comunicou os resultados aos funcionários."',
+    question: 'A reescrita na voz passiva analítica, com todos os elementos, é:',
+    options: [
+      'Os resultados foram comunicados pela diretora aos funcionários.',
+      'Os resultados comunicaram-se pela diretora aos funcionários.',
+      'Os funcionários foram comunicados dos resultados pela diretora.',
+      'Os resultados foram comunicados aos funcionários pela diretora.',
+    ],
+    correctAnswer: 3,
+    explanation: 'Passiva de "comunicar os resultados": OD "os resultados" vira sujeito paciente + "foram comunicados" (pretérito perfeito passivo) + "pela diretora" (agente) + "aos funcionários" (OI mantido). A ordem mais natural é D. C transforma o OI em sujeito — estrutura diferente. B usa passiva sintética incorreta com VTDI.',
+  },
+  {
+    id: 'ex-m6-4',
+    type: 'multiple_choice',
+    difficulty: 'medium',
+    context: '"Terminada a reunião, os participantes deixaram a sala."',
+    question: 'Qual é a versão DESENVOLVIDA da oração reduzida de particípio?',
+    options: [
+      'Quando a reunião terminou, os participantes deixaram a sala.',
+      'Para que a reunião terminasse, os participantes deixaram a sala.',
+      'Embora a reunião tivesse terminado, os participantes deixaram a sala.',
+      'Porque a reunião terminou, os participantes deixaram a sala.',
+    ],
+    correctAnswer: 0,
+    explanation: '"Terminada a reunião" = oração reduzida de particípio com valor TEMPORAL (depois que / quando). A versão desenvolvida mais natural é "Quando a reunião terminou". As opções B (final), C (concessiva) e D (causal) expressam relações lógicas diferentes da temporal.',
+  },
+  {
+    id: 'ex-m6-5',
+    type: 'multiple_choice',
+    difficulty: 'hard',
+    context: '"Ei mano, vi que tu não veio no rolo hoje. Tudo na paz? A gente resolve o trampo amanhã."',
+    question: 'Reescrevendo esse texto como e-mail profissional semiformal, qual versão é mais adequada?',
+    options: [
+      'Olá! Notei sua ausência hoje. Está tudo bem? Podemos resolver o assunto amanhã.',
+      'Venho, por meio desta, informar sua ausência e solicitar resolução do trabalho.',
+      'Ei, você não veio hoje. Tudo bem? Resolvemos amanhã.',
+      'Prezado colega, lamento informar sua ausência. O trabalho aguarda resolução.',
+    ],
+    correctAnswer: 0,
+    explanation: 'Semiformal (e-mail profissional): linguagem padrão culta, direta, cordial, sem gírias ("mano", "rolo", "trampo") e sem formalidade excessiva. A é o equilíbrio correto. B é excessivamente formal. C mantém informalidade. D é excessivamente formal e com tom inadequado.',
+  },
+];
+
 export const EXERCISES_DATA: Record<string, Exercise[]> = {
   modulo1: exerciciosModulo1,
   modulo2: exerciciosModulo2,
@@ -490,4 +568,5 @@ export const EXERCISES_DATA: Record<string, Exercise[]> = {
   modulo4: exerciciosModulo4,
   modulo5a: exerciciosModulo5a,
   modulo5b: exerciciosModulo5b,
+  modulo6: exerciciosModulo6,
 };
