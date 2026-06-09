@@ -1,4 +1,11 @@
-export type ModuleId = 'modulo63' | 'modulo64' | 'exercicios';
+export type ModuleId =
+  | 'modulo1'
+  | 'modulo2'
+  | 'modulo3'
+  | 'modulo4'
+  | 'modulo5a'
+  | 'modulo5b'
+  | 'modulo6';
 
 export interface Module {
   id: ModuleId;
@@ -10,6 +17,12 @@ export interface Module {
   colorLight: string;
   totalLessons: number;
   totalExercises: number;
+  group: string;
+}
+
+export interface ModuleGroup {
+  label: string;
+  modules: Module[];
 }
 
 export interface Progress {
@@ -22,12 +35,13 @@ export interface Progress {
 export interface Lesson {
   id: string;
   title: string;
-  content: LessonSection[];
+  duration: string;
+  sections: LessonSection[];
   completed?: boolean;
 }
 
 export interface LessonSection {
-  type: 'title' | 'subtitle' | 'text' | 'example' | 'tip' | 'warning' | 'quote' | 'table';
+  type: 'title' | 'subtitle' | 'text' | 'example' | 'tip' | 'warning' | 'quote' | 'table' | 'divider';
   content: string;
   label?: string;
   rows?: string[][];
@@ -48,14 +62,7 @@ export interface Exercise {
 }
 
 export type RootStackParamList = {
-  MainTabs: undefined;
-  LessonDetail: { lessonId: string; moduloId: ModuleId };
-  ExerciseSession: { moduloId: ModuleId; difficulty?: string };
-};
-
-export type TabParamList = {
   Home: undefined;
-  Modulo63: undefined;
-  Modulo64: undefined;
-  Exercicios: undefined;
+  ModuleDetail: { moduleId: ModuleId };
+  LessonDetail: { moduleId: ModuleId; lessonIndex: number };
 };

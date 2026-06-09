@@ -5,51 +5,118 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  ImageBackground,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ModuleCard } from '../components/ModuleCard';
 import { StatsRow } from '../components/StatsRow';
 import { colors, shadows } from '../theme/colors';
-import { Module } from '../types';
+import { Module, ModuleGroup } from '../types';
 
-const MODULES: Module[] = [
+const MODULE_GROUPS: ModuleGroup[] = [
   {
-    id: 'modulo63',
-    title: 'Reorganização de Orações e Períodos',
-    subtitle: 'Módulo 6.3',
-    description:
-      'Aprenda a reestruturar orações coordenadas e subordinadas, transformar períodos simples em compostos e dominar a coesão textual.',
-    icon: 'git-merge-outline',
-    color: colors.modulo63,
-    colorLight: colors.modulo63Light,
-    totalLessons: 6,
-    totalExercises: 24,
+    label: 'LEITURA E INTERPRETAÇÃO',
+    modules: [
+      {
+        id: 'modulo1',
+        title: 'Compreensão e Interpretação de Textos',
+        subtitle: 'Tópico 1',
+        description: 'Diferença entre compreensão e interpretação, leitura literal vs. inferencial, tema, tese, argumento e pressupostos.',
+        icon: 'reader-outline',
+        color: colors.modulo1,
+        colorLight: colors.modulo1Light,
+        totalLessons: 5,
+        totalExercises: 20,
+        group: 'leitura',
+      },
+      {
+        id: 'modulo2',
+        title: 'Tipos e Gêneros Textuais',
+        subtitle: 'Tópico 2',
+        description: 'Narração, descrição, dissertação, exposição e injunção. Gêneros formais, jornalísticos e do cotidiano.',
+        icon: 'documents-outline',
+        color: colors.modulo2,
+        colorLight: colors.modulo2Light,
+        totalLessons: 5,
+        totalExercises: 20,
+        group: 'leitura',
+      },
+    ],
   },
   {
-    id: 'modulo64',
-    title: 'Reescrita de Textos por Gênero e Formalidade',
-    subtitle: 'Módulo 6.4',
-    description:
-      'Domine a reescrita de textos em diferentes gêneros textuais e adapte o nível de formalidade conforme o contexto comunicativo.',
-    icon: 'create-outline',
-    color: colors.modulo64,
-    colorLight: colors.modulo64Light,
-    totalLessons: 7,
-    totalExercises: 28,
+    label: 'LÍNGUA E NORMA',
+    modules: [
+      {
+        id: 'modulo3',
+        title: 'Ortografia Oficial',
+        subtitle: 'Tópico 3',
+        description: 'Uso de X/CH, S/SS/Ç/Z, G/J, hífen, maiúsculas, palavras homófonas, parônimas e o novo acordo ortográfico.',
+        icon: 'text-outline',
+        color: colors.modulo3,
+        colorLight: colors.modulo3Light,
+        totalLessons: 5,
+        totalExercises: 25,
+        group: 'norma',
+      },
+      {
+        id: 'modulo4',
+        title: 'Coesão Textual',
+        subtitle: 'Tópico 4',
+        description: 'Referenciação, substituição, conectores e sequenciação (4.1). Tempos e modos verbais (4.2).',
+        icon: 'link-outline',
+        color: colors.modulo4,
+        colorLight: colors.modulo4Light,
+        totalLessons: 5,
+        totalExercises: 20,
+        group: 'norma',
+      },
+    ],
   },
   {
-    id: 'exercicios',
-    title: 'Exercícios e Simulados',
-    subtitle: 'Prática',
-    description:
-      'Pratique tudo com questões de múltipla escolha, reordenação, lacunas e desafios de reescrita com feedback detalhado.',
-    icon: 'trophy-outline',
-    color: colors.exercicios,
-    colorLight: colors.exerciciosLight,
-    totalLessons: 0,
-    totalExercises: 52,
+    label: 'MORFOSSINTAXE',
+    modules: [
+      {
+        id: 'modulo5a',
+        title: 'Classes, Coordenação e Subordinação',
+        subtitle: 'Tópico 5 — Parte I',
+        description: 'Classes de palavras (5.1), relações de coordenação (5.2) e subordinação (5.3) entre orações e termos.',
+        icon: 'git-merge-outline',
+        color: colors.modulo5a,
+        colorLight: colors.modulo5aLight,
+        totalLessons: 7,
+        totalExercises: 30,
+        group: 'morfo',
+      },
+      {
+        id: 'modulo5b',
+        title: 'Pontuação, Concordância, Regência e Pronomes',
+        subtitle: 'Tópico 5 — Parte II',
+        description: 'Pontuação (5.4), concordância verbal e nominal (5.5), regência (5.6), crase (5.7) e pronomes átonos (5.8).',
+        icon: 'swap-horizontal-outline',
+        color: colors.modulo5b,
+        colorLight: colors.modulo5bLight,
+        totalLessons: 8,
+        totalExercises: 35,
+        group: 'morfo',
+      },
+    ],
+  },
+  {
+    label: 'REESCRITA',
+    modules: [
+      {
+        id: 'modulo6',
+        title: 'Reescrita de Frases e Parágrafos',
+        subtitle: 'Tópico 6',
+        description: 'Significação (6.1), substituição (6.2), reorganização de orações (6.3) e reescrita por gênero e formalidade (6.4).',
+        icon: 'create-outline',
+        color: colors.modulo6,
+        colorLight: colors.modulo6Light,
+        totalLessons: 8,
+        totalExercises: 32,
+        group: 'reescrita',
+      },
+    ],
   },
 ];
 
@@ -58,73 +125,64 @@ const TIPS = [
     icon: 'bulb-outline',
     color: colors.warning,
     title: 'Dica do dia',
-    text: 'Ao reorganizar períodos, identifique primeiro o núcleo da oração principal — ela sustenta o sentido do restante.',
+    text: 'Em questões de interpretação, a resposta correta está sempre fundamentada no texto — desconfie de afirmações que vão além do que foi dito.',
   },
   {
     icon: 'star-outline',
     color: colors.primary,
     title: 'Sabia que?',
-    text: 'O nível de formalidade de um texto é determinado não só pelo vocabulário, mas também pela estrutura sintática escolhida.',
+    text: 'A diferença entre "tipo textual" e "gênero textual" é um dos temas mais cobrados em provas de concurso de Língua Portuguesa.',
   },
   {
     icon: 'flash-outline',
-    color: colors.modulo63,
+    color: colors.modulo5a,
     title: 'Conceito-chave',
-    text: 'Orações subordinadas adverbiais expressam circunstâncias (causa, consequência, condição…) que modulam o sentido da principal.',
+    text: 'A crase só ocorre diante de palavras femininas que admitem o artigo "a". Antes de verbos e palavras masculinas, nunca haverá crase.',
+  },
+  {
+    icon: 'trophy-outline',
+    color: colors.modulo3,
+    title: 'Para o concurso',
+    text: 'Concordância verbal e nominal juntas respondem por cerca de 15% das questões de Língua Portuguesa em concursos federais.',
   },
 ];
 
 export function HomeScreen({ navigation }: any) {
   const [tipIndex, setTipIndex] = React.useState(0);
-
-  const nextTip = () => setTipIndex((i) => (i + 1) % TIPS.length);
   const tip = TIPS[tipIndex];
+  const nextTip = () => setTipIndex((i) => (i + 1) % TIPS.length);
+
+  const totalLessons = MODULE_GROUPS.flatMap(g => g.modules).reduce((a, m) => a + m.totalLessons, 0);
+  const totalExercises = MODULE_GROUPS.flatMap(g => g.modules).reduce((a, m) => a + m.totalExercises, 0);
 
   const stats = [
-    { icon: 'book-outline', value: 13, label: 'Aulas', color: colors.primary },
-    { icon: 'pencil-outline', value: 52, label: 'Exercícios', color: colors.modulo63 },
-    { icon: 'ribbon-outline', value: '0%', label: 'Progresso', color: colors.modulo64 },
+    { icon: 'school-outline', value: 7, label: 'Módulos', color: colors.primary },
+    { icon: 'book-outline', value: totalLessons, label: 'Aulas', color: colors.modulo1 },
+    { icon: 'pencil-outline', value: totalExercises, label: 'Questões', color: colors.modulo6 },
   ];
-
-  const goToModule = (moduleId: string) => {
-    if (moduleId === 'modulo63') navigation.navigate('Modulo63');
-    else if (moduleId === 'modulo64') navigation.navigate('Modulo64');
-    else navigation.navigate('Exercicios');
-  };
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
-      <ScrollView
-        style={styles.scroll}
-        contentContainerStyle={styles.content}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Banner superior */}
-        <View style={[styles.banner, shadows.md]}>
+      <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+
+        {/* Banner */}
+        <View style={[styles.banner, { backgroundColor: colors.primary }]}>
           <View style={styles.bannerContent}>
-            <Text style={styles.bannerTag}>LÍNGUA PORTUGUESA</Text>
+            <Text style={styles.bannerTag}>CONCURSO PÚBLICO · LÍNGUA PORTUGUESA</Text>
             <Text style={styles.bannerTitle}>LinguaMaster</Text>
-            <Text style={styles.bannerSubtitle}>
-              Reorganização e Reescrita de Textos
-            </Text>
+            <Text style={styles.bannerSub}>Programa completo de Língua Portuguesa</Text>
           </View>
-          <View style={styles.bannerIcon}>
-            <Ionicons name="library" size={52} color="rgba(255,255,255,0.25)" />
-          </View>
+          <Ionicons name="library" size={56} color="rgba(255,255,255,0.2)" />
         </View>
 
-        {/* Estatísticas */}
+        {/* Stats */}
         <Text style={styles.sectionLabel}>VISÃO GERAL</Text>
         <StatsRow items={stats} />
 
-        {/* Card de dica */}
+        {/* Dica */}
         <Text style={styles.sectionLabel}>APRENDIZADO</Text>
-        <TouchableOpacity
-          style={[styles.tipCard, shadows.sm]}
-          onPress={nextTip}
-          activeOpacity={0.85}
-        >
-          <View style={[styles.tipIconBox, { backgroundColor: tip.color + '20' }]}>
+        <TouchableOpacity style={[styles.tipCard, shadows.sm]} onPress={nextTip} activeOpacity={0.85}>
+          <View style={[styles.tipIcon, { backgroundColor: tip.color + '20' }]}>
             <Ionicons name={tip.icon as any} size={22} color={tip.color} />
           </View>
           <View style={styles.tipBody}>
@@ -134,21 +192,24 @@ export function HomeScreen({ navigation }: any) {
           <Ionicons name="refresh-outline" size={16} color={colors.textTertiary} />
         </TouchableOpacity>
 
-        {/* Módulos */}
-        <Text style={styles.sectionLabel}>MÓDULOS</Text>
-        {MODULES.map((mod) => (
-          <ModuleCard
-            key={mod.id}
-            module={mod}
-            onPress={() => goToModule(mod.id)}
-          />
+        {/* Módulos agrupados */}
+        {MODULE_GROUPS.map((group) => (
+          <View key={group.label}>
+            <Text style={styles.sectionLabel}>{group.label}</Text>
+            {group.modules.map((mod) => (
+              <ModuleCard
+                key={mod.id}
+                module={mod}
+                onPress={() => navigation.navigate('ModuleDetail', { moduleId: mod.id })}
+              />
+            ))}
+          </View>
         ))}
 
-        {/* Rodapé */}
         <View style={styles.footer}>
-          <Ionicons name="information-circle-outline" size={14} color={colors.textTertiary} />
+          <Ionicons name="information-circle-outline" size={13} color={colors.textTertiary} />
           <Text style={styles.footerText}>
-            Conteúdo baseado no currículo de Língua Portuguesa — ensino médio
+            Conteúdo baseado no programa oficial de Língua Portuguesa para concursos públicos
           </Text>
         </View>
       </ScrollView>
@@ -157,53 +218,37 @@ export function HomeScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  safe: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  scroll: {
-    flex: 1,
-  },
-  content: {
-    paddingBottom: 32,
-  },
-  // Banner
+  safe: { flex: 1, backgroundColor: colors.background },
+  scroll: { flex: 1 },
+  content: { paddingBottom: 40 },
   banner: {
     marginHorizontal: 16,
     marginTop: 16,
-    marginBottom: 8,
     borderRadius: 20,
-    backgroundColor: colors.primary,
     flexDirection: 'row',
+    alignItems: 'center',
     padding: 24,
     overflow: 'hidden',
   },
-  bannerContent: {
-    flex: 1,
-  },
+  bannerContent: { flex: 1 },
   bannerTag: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: '700',
-    color: 'rgba(255,255,255,0.7)',
-    letterSpacing: 1.2,
+    color: 'rgba(255,255,255,0.65)',
+    letterSpacing: 1,
     marginBottom: 6,
   },
   bannerTitle: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: '800',
-    color: '#FFFFFF',
+    color: '#fff',
     letterSpacing: -0.5,
   },
-  bannerSubtitle: {
+  bannerSub: {
     fontSize: 12,
-    color: 'rgba(255,255,255,0.75)',
+    color: 'rgba(255,255,255,0.7)',
     marginTop: 4,
-    lineHeight: 18,
   },
-  bannerIcon: {
-    alignSelf: 'center',
-  },
-  // Labels de seção
   sectionLabel: {
     fontSize: 11,
     fontWeight: '700',
@@ -213,7 +258,6 @@ const styles = StyleSheet.create({
     marginTop: 24,
     marginBottom: 10,
   },
-  // Dica
   tipCard: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -223,36 +267,33 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 12,
   },
-  tipIconBox: {
+  tipIcon: {
     width: 42,
     height: 42,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  tipBody: {
-    flex: 1,
-  },
+  tipBody: { flex: 1 },
   tipTitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '700',
-    marginBottom: 4,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
+    marginBottom: 4,
   },
   tipText: {
     fontSize: 13,
     color: colors.textSecondary,
     lineHeight: 19,
   },
-  // Rodapé
   footer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 5,
     marginTop: 24,
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
   },
   footerText: {
     fontSize: 11,

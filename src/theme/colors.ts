@@ -4,17 +4,27 @@ export const colors = {
   primaryDark: '#1A4BAA',
   primaryLight: '#5B8FF5',
 
-  // Secundárias
-  secondary: '#7C3AED',
-  secondaryLight: '#A78BFA',
+  // Módulos — Leitura e Interpretação
+  modulo1: '#0369A1',
+  modulo1Light: '#E0F2FE',
+  modulo2: '#0891B2',
+  modulo2Light: '#CFFAFE',
 
-  // Módulos
-  modulo63: '#0F766E',   // Verde-azulado (Reorganização)
-  modulo63Light: '#CCFBF1',
-  modulo64: '#B45309',   // Âmbar (Reescrita)
-  modulo64Light: '#FEF3C7',
-  exercicios: '#7C3AED', // Roxo (Exercícios)
-  exerciciosLight: '#EDE9FE',
+  // Módulos — Língua e Norma
+  modulo3: '#7C3AED',
+  modulo3Light: '#EDE9FE',
+  modulo4: '#6D28D9',
+  modulo4Light: '#F5F3FF',
+
+  // Módulos — Morfossintaxe
+  modulo5a: '#0F766E',
+  modulo5aLight: '#CCFBF1',
+  modulo5b: '#0D9488',
+  modulo5bLight: '#CCFBF1',
+
+  // Módulo — Reescrita
+  modulo6: '#B45309',
+  modulo6Light: '#FEF3C7',
 
   // Feedback
   success: '#16A34A',
@@ -38,10 +48,6 @@ export const colors = {
   textSecondary: '#475569',
   textTertiary: '#94A3B8',
   textInverse: '#FFFFFF',
-
-  // Gradiente base
-  gradientStart: '#2D6BE4',
-  gradientEnd: '#7C3AED',
 };
 
 export const shadows = {
