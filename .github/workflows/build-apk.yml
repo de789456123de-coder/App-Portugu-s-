@@ -42,8 +42,17 @@ jobs:
       - name: Gerar projeto Android nativo
         run: npx expo prebuild --platform android --no-install
 
-      - name: Empacotar JS dentro do APK
-        run: echo "bundleInDebug=true" >> android/gradle.properties
+      - name: Criar pasta de assets Android
+        run: mkdir -p android/app/src/main/assets
+
+      - name: Gerar bundle JavaScript
+        run: |
+          npx react-native bundle \
+            --platform android \
+            --dev false \
+            --entry-file index.ts \
+            --bundle-output android/app/src/main/assets/index.android.bundle \
+            --assets-dest android/app/src/main/res
 
       - name: Build APK
         run: |
