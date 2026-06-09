@@ -1,0 +1,72 @@
+name: Build APK Android
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-android:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Configurar EAS CLI
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build APK no EAS
+        run: eas build --platform android --profile preview --non-interactive --wait
+
+      - name: Obter URL do APK
+        run: |
+          APK_URL=$(eas build:list --platform android --status FINISHED --limit 1 --json --non-interactive | jq -r '.[0].artifacts.buildUrl')
+          echo "APK_URL=$APK_URL" >> $GITHUB_ENV
+          echo "APK disponível em: $APK_URL"
+
+      - name: Baixar APK
+        run: curl -L "$APK_URL" -o LinguaMaster.apk
+
+      - name: Upload como artefato do workflow
+        uses: actions/upload-artifact@v4
+        with:
+          name: LinguaMaster-APK
+          path: LinguaMaster.apk
+          retention-days: 30
+
+      - name: Criar Release no GitHub
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: LinguaMaster.apk
+          name: LinguaMaster ${{ github.ref_name }}
+          body: |
+            ## LinguaMaster ${{ github.ref_name }}
+
+            App completo de Língua Portuguesa para Concursos Públicos.
+
+            **Conteúdo:**
+            - 7 módulos com 43 aulas aprofundadas
+            - 105 flashcards com flip animado
+            - Exercícios por módulo + Simulado Final com 20 questões
+            - Progresso salvo automaticamente
+
+            **Como instalar no Android:**
+            1. Baixe o arquivo `LinguaMaster.apk`
+            2. No Android: Configurações → Segurança → Ativar "Fontes desconhecidas"
+            3. Abra o APK baixado e confirme a instalação
