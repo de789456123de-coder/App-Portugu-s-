@@ -4,9 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '../screens/HomeScreen';
 import { ModuleScreen } from '../screens/ModuleScreen';
 import { LessonScreen } from '../screens/LessonScreen';
-import { RootStackParamList } from '../types';
+import { ExerciseScreen } from '../screens/ExerciseScreen';
 
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator();
 
 export function AppNavigator() {
   return (
@@ -15,6 +15,7 @@ export function AppNavigator() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ModuleDetail" component={ModuleScreen} />
         <Stack.Screen name="LessonDetail" component={LessonScreen} />
+        <Stack.Screen name="Exercises" component={ExerciseScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

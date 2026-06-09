@@ -1,6 +1,8 @@
 import { modulo1Lessons } from './modulo1';
 import { modulo2Lessons } from './modulo2';
 import { modulo3Lessons } from './modulo3';
+import { modulo4Lessons } from './modulo4';
+import { modulo5aLessons } from './modulo5a';
 import { colors } from '../theme/colors';
 import { Module } from '../types';
 
@@ -43,9 +45,37 @@ const modulo3: Module = {
   group: 'norma',
 };
 
+const modulo4: Module = {
+  id: 'modulo4',
+  title: 'Coesão Textual',
+  subtitle: 'Tópico 4',
+  description: 'Referenciação, substituição, elipse, conectores de adição, oposição, conclusão, causa, consequência, condição e tempos verbais.',
+  icon: 'link-outline',
+  color: colors.modulo4,
+  colorLight: colors.modulo4Light,
+  totalLessons: modulo4Lessons.length,
+  totalExercises: 20,
+  group: 'norma',
+};
+
+const modulo5a: Module = {
+  id: 'modulo5a',
+  title: 'Classes, Coordenação e Subordinação',
+  subtitle: 'Tópico 5 — Parte I',
+  description: 'Classes de palavras (5.1), relações de coordenação (5.2) e subordinação entre orações e termos (5.3).',
+  icon: 'git-merge-outline',
+  color: colors.modulo5a,
+  colorLight: colors.modulo5aLight,
+  totalLessons: modulo5aLessons.length,
+  totalExercises: 30,
+  group: 'morfo',
+};
+
 export const MODULE_DATA = {
   modulo1: { module: modulo1, lessons: modulo1Lessons },
   modulo2: { module: modulo2, lessons: modulo2Lessons },
   modulo3: { module: modulo3, lessons: modulo3Lessons },
-  // modulo4, modulo5a, modulo5b, modulo6 → próximas partes
+  modulo4: { module: modulo4, lessons: modulo4Lessons },
+  modulo5a: { module: modulo5a, lessons: modulo5aLessons },
+  // modulo5b e modulo6 → Partes 4 e 5
 };

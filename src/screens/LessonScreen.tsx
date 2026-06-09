@@ -15,7 +15,7 @@ import { Lesson } from '../types';
 
 interface LessonScreenProps {
   navigation: any;
-  route: { params: { moduleId: string; lessonIndex: number } };
+  route: any;
 }
 
 export function LessonScreen({ navigation, route }: LessonScreenProps) {

@@ -15,7 +15,7 @@ import { MODULE_DATA } from '../data';
 
 interface ModuleScreenProps {
   navigation: any;
-  route: { params: { moduleId: string } };
+  route: any;
 }
 
 export function ModuleScreen({ navigation, route }: ModuleScreenProps) {
@@ -99,6 +99,17 @@ export function ModuleScreen({ navigation, route }: ModuleScreenProps) {
             }
           />
         ))}
+
+        {/* Botão de exercícios */}
+        <TouchableOpacity
+          style={[styles.exerciseBtn, { backgroundColor: module.color }]}
+          onPress={() => navigation.navigate('Exercises', { moduleId })}
+          activeOpacity={0.85}
+        >
+          <Ionicons name="pencil" size={20} color="#fff" />
+          <Text style={styles.exerciseBtnText}>Praticar com Exercícios</Text>
+          <Ionicons name="arrow-forward" size={18} color="#fff" />
+        </TouchableOpacity>
 
         <View style={styles.footerNote}>
           <Ionicons name="information-circle-outline" size={13} color={colors.textTertiary} />
@@ -197,6 +208,23 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginBottom: 8,
     marginTop: 4,
+  },
+  exerciseBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    marginHorizontal: 16,
+    marginTop: 8,
+    borderRadius: 14,
+    paddingVertical: 16,
+  },
+  exerciseBtnText: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#fff',
   },
   footerNote: {
     flexDirection: 'row',
