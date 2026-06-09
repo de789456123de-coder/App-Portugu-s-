@@ -61,8 +61,16 @@ export interface Exercise {
   userAnswer?: string | number | string[];
 }
 
+export interface Flashcard {
+  id: string;
+  front: string;
+  back: string;
+  moduleId: ModuleId;
+}
+
 export type RootStackParamList = {
   Home: undefined;
   ModuleDetail: { moduleId: ModuleId };
   LessonDetail: { moduleId: ModuleId; lessonIndex: number };
+  Flashcards: { moduleId?: ModuleId | 'all' };
 };

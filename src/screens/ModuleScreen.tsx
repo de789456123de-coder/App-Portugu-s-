@@ -100,7 +100,7 @@ export function ModuleScreen({ navigation, route }: ModuleScreenProps) {
           />
         ))}
 
-        {/* Botão de exercícios */}
+        {/* Botões de ação */}
         <TouchableOpacity
           style={[styles.exerciseBtn, { backgroundColor: module.color }]}
           onPress={() => navigation.navigate('Exercises', { moduleId })}
@@ -109,6 +109,16 @@ export function ModuleScreen({ navigation, route }: ModuleScreenProps) {
           <Ionicons name="pencil" size={20} color="#fff" />
           <Text style={styles.exerciseBtnText}>Praticar com Exercícios</Text>
           <Ionicons name="arrow-forward" size={18} color="#fff" />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.flashcardBtn, { borderColor: module.color + '50' }]}
+          onPress={() => navigation.navigate('Flashcards', { moduleId })}
+          activeOpacity={0.85}
+        >
+          <Ionicons name="layers-outline" size={20} color={module.color} />
+          <Text style={[styles.flashcardBtnText, { color: module.color }]}>Revisar com Flashcards</Text>
+          <Ionicons name="arrow-forward" size={18} color={module.color} />
         </TouchableOpacity>
 
         <View style={styles.footerNote}>
@@ -225,6 +235,24 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     color: '#fff',
+  },
+  flashcardBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    marginHorizontal: 16,
+    marginTop: 10,
+    borderRadius: 14,
+    paddingVertical: 14,
+    borderWidth: 1.5,
+    backgroundColor: colors.surface,
+  },
+  flashcardBtnText: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: '700',
   },
   footerNote: {
     flexDirection: 'row',

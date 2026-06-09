@@ -192,7 +192,7 @@ export function HomeScreen({ navigation }: any) {
           <Ionicons name="refresh-outline" size={16} color={colors.textTertiary} />
         </TouchableOpacity>
 
-        {/* Botão Simulado */}
+        {/* Avaliação e Revisão */}
         <Text style={styles.sectionLabel}>AVALIAÇÃO</Text>
         <TouchableOpacity
           style={[styles.simuladoBtn, shadows.md]}
@@ -209,6 +209,24 @@ export function HomeScreen({ navigation }: any) {
             </View>
           </View>
           <Ionicons name="chevron-forward" size={20} color="#fff" />
+        </TouchableOpacity>
+
+        <Text style={styles.sectionLabel}>REVISÃO RÁPIDA</Text>
+        <TouchableOpacity
+          style={[styles.flashcardBtn, shadows.sm]}
+          onPress={() => navigation.navigate('Flashcards', {})}
+          activeOpacity={0.85}
+        >
+          <View style={styles.flashcardBtnLeft}>
+            <View style={styles.flashcardIconBox}>
+              <Ionicons name="layers" size={24} color={colors.modulo4} />
+            </View>
+            <View>
+              <Text style={styles.flashcardBtnTitle}>Flashcards</Text>
+              <Text style={styles.flashcardBtnSub}>105 cartas · 7 baralhos temáticos</Text>
+            </View>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.modulo4} />
         </TouchableOpacity>
 
         {/* Módulos agrupados */}
@@ -336,6 +354,40 @@ const styles = StyleSheet.create({
   simuladoBtnSub: {
     fontSize: 12,
     color: 'rgba(255,255,255,0.75)',
+    marginTop: 2,
+  },
+  flashcardBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: colors.surface,
+    marginHorizontal: 16,
+    borderRadius: 16,
+    padding: 16,
+    borderWidth: 1.5,
+    borderColor: colors.modulo4 + '40',
+  },
+  flashcardBtnLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+  },
+  flashcardIconBox: {
+    width: 46,
+    height: 46,
+    borderRadius: 13,
+    backgroundColor: colors.modulo4 + '15',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flashcardBtnTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.textPrimary,
+  },
+  flashcardBtnSub: {
+    fontSize: 12,
+    color: colors.textSecondary,
     marginTop: 2,
   },
   footer: {
