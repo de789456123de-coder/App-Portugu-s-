@@ -3,6 +3,7 @@ import { modulo2Lessons } from './modulo2';
 import { modulo3Lessons } from './modulo3';
 import { modulo4Lessons } from './modulo4';
 import { modulo5aLessons } from './modulo5a';
+import { modulo5bLessons } from './modulo5b';
 import { colors } from '../theme/colors';
 import { Module } from '../types';
 
@@ -71,11 +72,25 @@ const modulo5a: Module = {
   group: 'morfo',
 };
 
+const modulo5b: Module = {
+  id: 'modulo5b',
+  title: 'Pontuação, Concordância, Regência e Pronomes',
+  subtitle: 'Tópico 5 — Parte II',
+  description: 'Pontuação (5.4), concordância verbal e nominal (5.5), regência verbal e nominal (5.6), crase (5.7) e colocação dos pronomes átonos (5.8).',
+  icon: 'swap-horizontal-outline',
+  color: colors.modulo5b,
+  colorLight: colors.modulo5bLight,
+  totalLessons: modulo5bLessons.length,
+  totalExercises: 35,
+  group: 'morfo',
+};
+
 export const MODULE_DATA = {
   modulo1: { module: modulo1, lessons: modulo1Lessons },
   modulo2: { module: modulo2, lessons: modulo2Lessons },
   modulo3: { module: modulo3, lessons: modulo3Lessons },
   modulo4: { module: modulo4, lessons: modulo4Lessons },
   modulo5a: { module: modulo5a, lessons: modulo5aLessons },
-  // modulo5b e modulo6 → Partes 4 e 5
+  modulo5b: { module: modulo5b, lessons: modulo5bLessons },
+  // modulo6 → Parte 5
 };
