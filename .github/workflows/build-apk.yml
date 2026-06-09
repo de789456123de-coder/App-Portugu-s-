@@ -42,6 +42,9 @@ jobs:
       - name: Gerar projeto Android nativo
         run: npx expo prebuild --platform android --no-install
 
+      - name: Empacotar JS dentro do APK
+        run: echo "bundleInDebug=true" >> android/gradle.properties
+
       - name: Build APK
         run: |
           cd android
