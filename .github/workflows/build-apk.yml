@@ -15,6 +15,12 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
 
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
@@ -24,36 +30,27 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Configurar EAS CLI
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Gerar projeto Android nativo
+        run: npx expo prebuild --platform android --no-install
 
-      - name: Build APK no EAS
-        run: eas build --platform android --profile preview --non-interactive --wait
-
-      - name: Obter URL do APK
+      - name: Build APK
         run: |
-          APK_URL=$(eas build:list --platform android --status FINISHED --limit 1 --json --non-interactive | jq -r '.[0].artifacts.buildUrl')
-          echo "APK_URL=$APK_URL" >> $GITHUB_ENV
-          echo "APK disponível em: $APK_URL"
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
 
-      - name: Baixar APK
-        run: curl -L "$APK_URL" -o LinguaMaster.apk
-
-      - name: Upload como artefato do workflow
+      - name: Upload APK como artefato
         uses: actions/upload-artifact@v4
         with:
           name: LinguaMaster-APK
-          path: LinguaMaster.apk
-          retention-days: 30
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 90
 
       - name: Criar Release no GitHub
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: LinguaMaster.apk
+          files: android/app/build/outputs/apk/debug/app-debug.apk
           name: LinguaMaster ${{ github.ref_name }}
           body: |
             ## LinguaMaster ${{ github.ref_name }}
@@ -67,6 +64,6 @@ jobs:
             - Progresso salvo automaticamente
 
             **Como instalar no Android:**
-            1. Baixe o arquivo `LinguaMaster.apk`
-            2. No Android: Configurações → Segurança → Ativar "Fontes desconhecidas"
-            3. Abra o APK baixado e confirme a instalação
+            1. Baixe o arquivo `app-debug.apk`
+            2. No Android: Configurações → Segurança → ativar "Fontes desconhecidas"
+            3. Abra o APK e confirme a instalação
